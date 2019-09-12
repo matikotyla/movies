@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import 'bootstrap/dist/css/bootstrap.css';
+import 'popper.js/dist/popper';
+import 'jquery/dist/jquery';
+import 'bootstrap/dist/js/bootstrap.js';
+
+// Authentication Higher Order Component
+import { Auth, NoAuth } from './components/Auth';
+
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+import Nav from './components/Nav';
+import List from './components/List';
+import Add from './components/Add';
+import Edit from './components/Edit';
+
+const MyLogin = NoAuth(Login);
+
+class App extends Component {
+  render() {
+    return(
+      <Router>
+        <Route path="/" component={Nav} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={(props) => <MyLogin {...props} />} />
+          <Route path="/register" component={NoAuth(Register)} />
+          <Route path="/list" component={Auth(List)} />
+          <Route path="/add" component={Auth(Add)} />
+          <Route path="/edit/:id" component={Auth(Edit)} />
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

@@ -1,0 +1,7 @@
+req.user = decoded;
+Globalna tablica error i je wyswietlac
+dodac onClick zeby je wylaczyc
+
+Learn about protected routes
+ZROBIE JEDNEGO WIELKIEGO HOC I W NIM TRZYMAC ERROR I PRZEKAZYWAC NIZEJ
+ZROBIC LADOWANIE JAK SIE KLIKNIE NA GUZICZEK
